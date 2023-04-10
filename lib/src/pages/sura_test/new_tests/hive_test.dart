@@ -1,4 +1,4 @@
-import 'package:a2_tutorial/src/main.dart';
+import 'package:a2_tutorial/main.dart';
 import 'package:a2_tutorial/src/utilities/hive/type/bank_account.dart';
 import 'package:a2_tutorial/widget/scaffold_template.dart';
 import 'package:flutter/material.dart';
@@ -30,35 +30,35 @@ class _MyHiveTestState extends State<MyHiveTest> {
         title: "Hive",
         body: Column(
           children: [
-            TextButton(
-                onPressed: () {
-                  box.put("bankAccount",
-                      BankAccount(currency: "dollar", myMoney: 10));
-                },
-                child: Text("dollar, 10")),
-            TextButton(
-                onPressed: () {
-                  box.put("bankAccount",
-                      BankAccount(currency: "riel", myMoney: 40000));
-                },
-                child: Text("riel, 40000")),
-            TextButton(
-                onPressed: () {
-                  box.put("bankAccount",
-                      BankAccount(currency: "yen", myMoney: 1300));
-                },
-                child: Text("yen, 1300")),
-            SizedBox(height: 50),
-            TextButton(
-                onPressed: () {
-                  BankAccount getBankAccount = box.get("bankAccount");
-                  currency = getBankAccount.currency;
-                  money = getBankAccount.myMoney.toString();
-                  setState(() {});
-                },
-                child: Text("get money in the bank")),
-            Text(currency ?? ""),
-            Text(money ?? ""),
+            // TextButton(
+            //     onPressed: () {
+            //       box.put("bankAccount",
+            //           BankAccount(currency: "dollar", myMoney: 10));
+            //     },
+            //     child: Text("dollar, 10")),
+            // TextButton(
+            //     onPressed: () {
+            //       box.put("bankAccount",
+            //           BankAccount(currency: "riel", myMoney: 40000));
+            //     },
+            //     child: Text("riel, 40000")),
+            // TextButton(
+            //     onPressed: () {
+            //       box.put("bankAccount",
+            //           BankAccount(currency: "yen", myMoney: 1300));
+            //     },
+            //     child: Text("yen, 1300")),
+            // SizedBox(height: 50),
+            // TextButton(
+            //     onPressed: () {
+            //       BankAccount getBankAccount = box.get("bankAccount");
+            //       currency = getBankAccount.currency;
+            //       money = getBankAccount.myMoney.toString();
+            //       setState(() {});
+            //     },
+            //     child: Text("get money in the bank")),
+            // Text(currency ?? ""),
+            // Text(money ?? ""),
           ],
         )
         // body: Center(

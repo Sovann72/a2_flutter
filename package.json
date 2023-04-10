@@ -1,0 +1,27 @@
+{
+  "name": "a2_tutorial",
+  "version": "1.0.0",
+  "description": "testing package for flutter",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "before-build-after": "echo 'start run' && flutter build appbundle && echo 'stop run'"
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sovann72/a2_flutter.git"
+  },
+  "keywords": [
+    "a2_flutter"
+  ],
+  "author": "sovann72",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sovann72/a2_flutter/issues"
+  },
+  "homepage": "https://github.com/Sovann72/a2_flutter#readme"
+}
