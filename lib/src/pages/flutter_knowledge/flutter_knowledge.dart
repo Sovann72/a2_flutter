@@ -3,16 +3,14 @@ import 'package:a2_tutorial/widget/lesson_template.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class SuraTest extends StatelessWidget {
+class FlutterKnowledge extends StatelessWidget {
   final String title;
   final List<SubLessonModel> lessons;
-  const SuraTest({super.key, required this.lessons, required this.title});
+  const FlutterKnowledge(
+      {super.key, required this.title, required this.lessons});
 
   @override
   Widget build(BuildContext context) {
-    return LessonTemplate(
-      lessonModel: lessons,
-      title: title,
-    );
+    return LessonTemplate(title: title, lessonModel: lessons);
   }
 }

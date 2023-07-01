@@ -13,7 +13,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:open_filex/open_filex.dart';
 
 class DownloadPDFPage extends StatefulWidget {
-  const DownloadPDFPage({super.key});
+  const DownloadPDFPage({super.key, required this.prop});
+  final String prop;
 
   @override
   State<DownloadPDFPage> createState() => _DownloadPDFPageState();
@@ -100,7 +101,7 @@ class _DownloadPDFPageState extends State<DownloadPDFPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            GestureDetector(onTap: downloadFile, child: Text("download pdf")),
+            GestureDetector(onTap: downloadFile, child: Text(widget.prop)),
             GestureDetector(
               onTap: getFile,
               child: Container(
@@ -116,14 +117,14 @@ class _DownloadPDFPageState extends State<DownloadPDFPage> {
   }
 }
 
-  Future<bool> requestPermission(Permission permission) async {
-    if (await permission.isGranted) {
+Future<bool> requestPermission(Permission permission) async {
+  if (await permission.isGranted) {
+    return true;
+  } else {
+    var result = await permission.request();
+    if (result == PermissionStatus.granted) {
       return true;
-    } else {
-      var result = await permission.request();
-      if (result == PermissionStatus.granted) {
-        return true;
-      }
     }
-    return false;
   }
+  return false;
+}

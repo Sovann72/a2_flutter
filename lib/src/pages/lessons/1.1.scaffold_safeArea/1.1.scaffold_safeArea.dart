@@ -1,4 +1,4 @@
-import 'package:a2_tutorial/src/pages/list/list_of_lesson.dart';
+import 'package:a2_tutorial/src/pages/list/lesson_model.dart';
 import 'package:a2_tutorial/widget/lesson_template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';

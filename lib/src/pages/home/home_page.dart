@@ -1,3 +1,4 @@
+import 'package:a2_tutorial/src/pages/home/list_of_lessons.dart';
 import 'package:a2_tutorial/src/pages/lessons/1.1.scaffold_safeArea/1.1.scaffold_safeArea.dart';
 import 'package:a2_tutorial/src/pages/lessons/1.1.scaffold_safeArea/a2safeArea.dart';
 import 'package:a2_tutorial/src/pages/lessons/1.1.scaffold_safeArea/a2scaffold.dart';
@@ -5,7 +6,7 @@ import 'package:a2_tutorial/src/pages/lessons/1.2.container_position/1.2.contain
 import 'package:a2_tutorial/src/pages/lessons/1.2.container_position/a2column.dart';
 import 'package:a2_tutorial/src/pages/lessons/1.2.container_position/a2container.dart';
 import 'package:a2_tutorial/src/pages/lessons/1.2.container_position/a2row.dart';
-import 'package:a2_tutorial/src/pages/list/list_of_lesson.dart';
+import 'package:a2_tutorial/src/pages/list/lesson_model.dart';
 import 'package:a2_tutorial/src/pages/onboarding_task/lessons/change_color.dart';
 import 'package:a2_tutorial/src/pages/onboarding_task/onboarding_task.dart';
 import 'package:a2_tutorial/src/pages/sura_test/new_tests/background_audio.dart';
@@ -75,63 +76,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<LessonModel> listOfLesson = [
-    LessonModel(
-        title: "Test",
-        page: SuraTest(
-          title: "Sura Test",
-          lessons: [
-            SubLessonModel(title: "video_player", pages: const MyVideoPlayer()),
-            SubLessonModel(title: "Hive", pages: const MyHiveTest()),
-            SubLessonModel(
-                title: "SnackBarEntireAppPage",
-                pages: const SnackBarEntireAppPage()),
-            SubLessonModel(
-                title: "MaterialApp", pages: const MyMaterialAppTest()),
-            SubLessonModel(title: "File", pages: const TestFileStoragePage()),
-            SubLessonModel(title: "Spectrum", pages: const SpectrumPage()),
-            SubLessonModel(
-                title: "download pdf", pages: const DownloadPDFPage()),
-            SubLessonModel(
-                title: "store and load", pages: const StoreAndLoadImg()),
-            SubLessonModel(title: "my search bar", pages: const MySearchBar()),
-            SubLessonModel(
-                title: "my package info", pages: const MyPackageInfo())
-          ],
-        )),
-    LessonModel(
-      title: "SafeArea and Scaffold",
-      page: MyScaffoldSafeArea(
-        title: "SafeArea and Scaffold",
-        lessons: [
-          SubLessonModel(title: "SafeArea", pages: const MySafeArea()),
-          SubLessonModel(title: "Scaffold", pages: const MyScaffold()),
-        ],
-      ),
-    ),
-    LessonModel(
-      title: "Container And Positioning",
-      page: MyContainerAndPositioning(
-        title: "Container And Positioning",
-        lessons: [
-          SubLessonModel(title: "Container", pages: const MyContainer()),
-          SubLessonModel(title: "Column", pages: const MyColumn()),
-          SubLessonModel(title: "Row", pages: const MyRow())
-        ],
-      ),
-    ),
-    LessonModel(
-        title: "Onboarding Task",
-        page: OnBoardingTask(
-          title: "onBoardingTask",
-          lessons: [
-            SubLessonModel(
-                title: "change color", pages: const ChangeColorsPage())
-          ],
-        ))
-    // LessonModel(title: l, page: page)
-  ];
-
   @override
   Widget build(BuildContext context) {
     return

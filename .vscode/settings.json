@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "xiosbase": "cpp"
-  }
+  },
+  "cmake.sourceDirectory": "D:/flutter/a2_tutorial/windows/runner"
 }
