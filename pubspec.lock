@@ -765,6 +765,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  soriya_flutter:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "38d36c8bb4b49e1a7d38bce2ab8e6b29a0a54bb7"
+      url: "https://github.com/Sovann72/soriya-flutter.git"
+    source: git
+    version: "1.0.0"
   source_gen:
     dependency: transitive
     description:
@@ -1070,5 +1079,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.19.0 <3.0.0"
+  dart: ">=2.19.6 <3.0.0"
   flutter: ">=3.3.0"

@@ -50,6 +50,7 @@ class _SplashScreenState extends State<SplashScreen> {
         context,
         MaterialPageRoute(
             builder: (context) => const MaterialApp(
+                debugShowCheckedModeBanner: false,
                 home: MyScaffoldTemplate(
                     title: "Home Page",
                     centerTitle: true,

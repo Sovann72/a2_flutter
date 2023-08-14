@@ -3,7 +3,9 @@
 //-------------------//
 import 'dart:io';
 
+import 'package:a2_tutorial/src/pages/sura_test/new_tests/my_video_edit/video_result_pop_up.dart';
 import 'package:flutter/material.dart';
+import 'package:sura_flutter/sura_flutter.dart';
 import 'package:sura_manager/sura_manager.dart';
 import 'package:video_editor/domain/bloc/controller.dart';
 import 'package:video_editor/video_editor.dart';
@@ -43,8 +45,11 @@ class _VideoEditorState extends State<VideoEditor> {
           minDuration: const Duration(seconds: 1),
           maxDuration: duration,
         );
+        // _controller.addListener(controllerListener);
         await _controller
-            .initialize(aspectRatio: 9 / 16)
+            .initialize(
+                // aspectRatio: 9 / 16,
+                )
             .then((_) => setState(() {}))
             .catchError((error) {
           // handle minumum duration bigger than video duration error
@@ -55,6 +60,14 @@ class _VideoEditorState extends State<VideoEditor> {
     });
   }
 
+  void controllerListener() {
+    if (_controller.isPlaying) {
+      _videoPlayerController.play();
+    } else {
+      _videoPlayerController.pause();
+    }
+  }
+
   @override
   void initState() {
     fetchData();
@@ -63,6 +76,7 @@ class _VideoEditorState extends State<VideoEditor> {
 
   @override
   void dispose() {
+    // _videoPlayerController.removeListener(controllerListener);
     loadingPage.dispose();
     _videoPlayerController.dispose();
     _exportingProgress.dispose();
@@ -80,19 +94,28 @@ class _VideoEditorState extends State<VideoEditor> {
       );
 
   void _exportVideo() async {
+    // SuraNavigator.push(VideoResultPopup(
+    //     video: File(
+    //         "/data/user/0/com.example.a2_tutorial/cache/(FREE TAB) It Will Rain - Bruno Mars (Easy Version) _ Fingerstyle Guitar _ TAB +_HD_1689149349043.mp4")));
+
     _exportingProgress.value = 0;
     _isExporting.value = true;
     // NOTE: To use `-crf 1` and [VideoExportPreset] you need `ffmpeg_kit_flutter_min_gpl` package (with `ffmpeg_kit` only it won't work)
     await _controller.exportVideo(
-      // format: VideoExportFormat.gif,
-      // preset: VideoExportPreset.medium,
-      // customInstruction: "-crf 17",
+      format: VideoExportFormat.mp4,
+      preset: VideoExportPreset.slower,
+      customInstruction: "-crf 17",
       onProgress: (stats, value) => _exportingProgress.value = value,
       onError: (e, s) => _showErrorSnackBar("Error on export video :("),
       onCompleted: (file) {
+        debugPrint("\x1B[33m[file]: ${file.path}");
         _isExporting.value = false;
         if (!mounted) return;
-
+        // await SuraNavigator.push(VideoResultPopup(video: file));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => VideoResultPopup(video: file)));
         // showDialog(
         //   context: context,
         //   builder: (_) => VideoResultPopup(video: file),
@@ -117,10 +140,13 @@ class _VideoEditorState extends State<VideoEditor> {
 
   @override
   Widget build(BuildContext context) {
+    final primary = Color(0xFF4267B2);
+    final second = Color(0xFF818285);
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        // backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         body: FutureManagerBuilder(
             futureManager: loadingPage,
             ready: (context, data) {
@@ -132,7 +158,7 @@ class _VideoEditorState extends State<VideoEditor> {
                       _topNavBar(),
                       Expanded(
                         child: DefaultTabController(
-                          length: 2,
+                          length: 1,
                           child: Column(
                             children: [
                               Expanded(
@@ -142,14 +168,33 @@ class _VideoEditorState extends State<VideoEditor> {
                                     Stack(
                                       alignment: Alignment.center,
                                       children: [
+                                        // GestureDetector(
+                                        //   onTap: () {
+                                        //     if (_videoPlayerController
+                                        //         .value.isPlaying) {
+                                        //       _controller.video.pause();
+                                        //       _videoPlayerController.pause();
+                                        //     } else {
+                                        //       _controller.video.play();
+                                        //       _videoPlayerController.play();
+                                        //     }
+                                        //   },
+                                        //   child: VideoPlayer(
+                                        //     _videoPlayerController,
+                                        //   ),
+                                        // ),
                                         CropGridViewer.preview(
-                                            controller: _controller),
+                                          controller: _controller,
+                                        ),
                                         AnimatedBuilder(
                                           animation: _controller.video,
                                           builder: (_, __) => Visibility(
-                                            visible: !_controller.isPlaying,
+                                            visible: !(_controller.isPlaying),
                                             child: GestureDetector(
-                                              onTap: _controller.video.play,
+                                              onTap: () {
+                                                _controller.video.play();
+                                                // _videoPlayerController.play();
+                                              },
                                               child: Container(
                                                 width: 40,
                                                 height: 40,
@@ -167,7 +212,7 @@ class _VideoEditorState extends State<VideoEditor> {
                                         ),
                                       ],
                                     ),
-                                    CoverViewer(controller: _controller)
+                                    // CoverViewer(controller: _controller)
                                   ],
                                 ),
                               ),
@@ -176,42 +221,53 @@ class _VideoEditorState extends State<VideoEditor> {
                                 margin: const EdgeInsets.only(top: 10),
                                 child: Column(
                                   children: [
-                                    TabBar(
-                                      tabs: [
-                                        Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: const [
-                                              Padding(
-                                                  padding: EdgeInsets.all(5),
-                                                  child: Icon(
-                                                    Icons.content_cut,
-                                                    color: Colors.black,
-                                                  )),
-                                              Text(
-                                                'Trim',
-                                                style: TextStyle(
-                                                    color: Colors.black),
-                                              )
-                                            ]),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: const [
-                                            Padding(
-                                                padding: EdgeInsets.all(5),
-                                                child: Icon(
-                                                  Icons.video_label,
-                                                  color: Colors.black,
-                                                )),
-                                            Text(
-                                              'Cover',
-                                              style: TextStyle(
-                                                  color: Colors.black),
-                                            )
-                                          ],
-                                        ),
-                                      ],
+                                    Theme(
+                                      data: ThemeData(
+                                        splashColor: Colors.black,
+                                      ),
+                                      child: TabBar(
+                                        overlayColor:
+                                            MaterialStateColor.resolveWith(
+                                                (states) => Colors.transparent),
+                                        splashFactory: NoSplash.splashFactory,
+                                        indicator:
+                                            BoxDecoration(border: Border.all()),
+                                        tabs: [
+                                          Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: const [
+                                                Padding(
+                                                    padding: EdgeInsets.all(5),
+                                                    child: Icon(
+                                                      Icons.content_cut,
+                                                      color: Colors.white,
+                                                    )),
+                                                Text(
+                                                  'Trim',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                )
+                                              ]),
+                                          // Row(
+                                          //   mainAxisAlignment:
+                                          //       MainAxisAlignment.center,
+                                          //   children: const [
+                                          //     Padding(
+                                          //         padding: EdgeInsets.all(5),
+                                          //         child: Icon(
+                                          //           Icons.video_label,
+                                          //           color: Colors.white,
+                                          //         )),
+                                          //     Text(
+                                          //       'Cover',
+                                          //       style: TextStyle(
+                                          //           color: Colors.white),
+                                          //     )
+                                          //   ],
+                                          // ),
+                                        ],
+                                      ),
                                     ),
                                     Expanded(
                                       child: TabBarView(
@@ -223,7 +279,7 @@ class _VideoEditorState extends State<VideoEditor> {
                                                 MainAxisAlignment.center,
                                             children: _trimSlider(),
                                           ),
-                                          _coverSelection(),
+                                          // _coverSelection(),
                                         ],
                                       ),
                                     ),
@@ -267,7 +323,7 @@ class _VideoEditorState extends State<VideoEditor> {
             Expanded(
               child: IconButton(
                 onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(Icons.exit_to_app),
+                icon: const Icon(Icons.exit_to_app, color: Colors.white),
                 tooltip: 'Leave editor',
               ),
             ),
@@ -276,7 +332,7 @@ class _VideoEditorState extends State<VideoEditor> {
               child: IconButton(
                 onPressed: () =>
                     _controller.rotate90Degrees(RotateDirection.left),
-                icon: const Icon(Icons.rotate_left),
+                icon: const Icon(Icons.rotate_left, color: Colors.white),
                 tooltip: 'Rotate unclockwise',
               ),
             ),
@@ -284,7 +340,7 @@ class _VideoEditorState extends State<VideoEditor> {
               child: IconButton(
                 onPressed: () =>
                     _controller.rotate90Degrees(RotateDirection.right),
-                icon: const Icon(Icons.rotate_right),
+                icon: const Icon(Icons.rotate_right, color: Colors.white),
                 tooltip: 'Rotate clockwise',
               ),
             ),
@@ -297,7 +353,7 @@ class _VideoEditorState extends State<VideoEditor> {
                 //     builder: (context) => CropScreen(controller: _controller),
                 //   ),
                 // ),
-                icon: const Icon(Icons.crop),
+                icon: const Icon(Icons.crop, color: Colors.white),
                 tooltip: 'Open crop screen',
               ),
             ),
@@ -305,12 +361,12 @@ class _VideoEditorState extends State<VideoEditor> {
             Expanded(
               child: PopupMenuButton(
                 tooltip: 'Open export menu',
-                icon: const Icon(Icons.save),
+                icon: const Icon(Icons.save, color: Colors.white),
                 itemBuilder: (context) => [
-                  PopupMenuItem(
-                    onTap: _exportCover,
-                    child: const Text('Export cover'),
-                  ),
+                  // PopupMenuItem(
+                  //   onTap: _exportCover,
+                  //   child: const Text('Export cover'),
+                  // ),
                   PopupMenuItem(
                     onTap: _exportVideo,
                     child: const Text('Export video'),
@@ -343,15 +399,24 @@ class _VideoEditorState extends State<VideoEditor> {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: height / 4),
             child: Row(children: [
-              Text(formatter(Duration(seconds: pos.toInt()))),
+              Text(
+                formatter(Duration(seconds: pos.toInt())),
+                style: const TextStyle(color: Colors.white),
+              ),
               const Expanded(child: SizedBox()),
               Visibility(
                 visible: _controller.isTrimming,
                 // visible: true,
                 child: Row(mainAxisSize: MainAxisSize.min, children: [
-                  Text(formatter(_controller.startTrim)),
+                  Text(
+                    formatter(_controller.startTrim),
+                    style: const TextStyle(color: Colors.white),
+                  ),
                   const SizedBox(width: 10),
-                  Text(formatter(_controller.endTrim)),
+                  Text(
+                    formatter(_controller.endTrim),
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 ]),
               ),
             ]),
@@ -365,9 +430,14 @@ class _VideoEditorState extends State<VideoEditor> {
           controller: _controller,
           height: height,
           horizontalMargin: height / 4,
-          child: TrimTimeline(
-            controller: _controller,
-            padding: const EdgeInsets.only(top: 10),
+          child: Theme(
+            data: ThemeData(
+                textTheme:
+                    const TextTheme(bodySmall: TextStyle(color: Colors.white))),
+            child: TrimTimeline(
+              controller: _controller,
+              padding: const EdgeInsets.only(top: 10),
+            ),
           ),
         ),
       )

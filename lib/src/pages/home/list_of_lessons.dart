@@ -2,7 +2,10 @@ import 'package:a2_tutorial/src/pages/flutter_knowledge/flutter_knowledge.dart';
 import 'package:a2_tutorial/src/pages/lessons/asurraa_training/component/component_page.dart';
 import 'package:a2_tutorial/src/pages/lessons/asurraa_training/fetch_data_page.dart';
 import 'package:a2_tutorial/src/pages/list/lesson_model.dart';
+import 'package:a2_tutorial/src/pages/sura_test/new_tests/life_cycle.dart';
 import 'package:a2_tutorial/src/pages/sura_test/new_tests/my_video_edit/my_video_edit.dart';
+import 'package:a2_tutorial/src/pages/sura_test/new_tests/search_animation.dart';
+import 'package:a2_tutorial/src/pages/sura_test/new_tests/translate_animation.dart';
 import 'package:a2_tutorial/src/pages/sura_test/sura_test.dart';
 import 'package:a2_tutorial/src/pages/lessons/1.1.scaffold_safeArea/1.1.scaffold_safeArea.dart';
 import 'package:a2_tutorial/src/pages/lessons/1.1.scaffold_safeArea/a2safeArea.dart';
@@ -26,6 +29,8 @@ import 'package:a2_tutorial/src/pages/sura_test/new_tests/store_n_load_img.dart'
 import 'package:a2_tutorial/src/pages/sura_test/new_tests/test_file.dart';
 import 'package:a2_tutorial/src/pages/flutter_knowledge/didUpdateWidget/didUpdateWidget.dart';
 import 'package:a2_tutorial/src/pages/flutter_knowledge/didChangeDependencies/didChangeDependencies.dart';
+import 'package:a2_tutorial/src/soriya/onboarding/onboarding_page.dart';
+import 'package:a2_tutorial/src/soriya/soriya_page.dart';
 // import 'package:a2_tutorial/src/pages/sura_test/sura_test.dart';
 
 List<LessonModel> listOfLesson = [
@@ -53,7 +58,21 @@ List<LessonModel> listOfLesson = [
           SubLessonModel(title: "my search bar", pages: const MySearchBar()),
           SubLessonModel(
               title: "my package info", pages: const MyPackageInfo()),
-          SubLessonModel(title: "video editor", pages: const MyVideoEditor())
+          SubLessonModel(title: "video editor", pages: const MyVideoEditor()),
+          SubLessonModel(
+              title: "search with animation", pages: SearchWithAnimation()),
+          SubLessonModel(title: "life cycle", pages: LifeCycleScreen()),
+          SubLessonModel(
+              title: "translate animation", pages: TranslateAnimation()),
+          // SubLessonModel(title: "test smooth marker", pages: pages)
+        ],
+      )),
+  LessonModel(
+      title: "soriya",
+      page: SoriyaPage(
+        title: "soriya",
+        lessons: [
+          SubLessonModel(title: "onboarding page", pages: OnboardingPage())
         ],
       )),
   LessonModel(

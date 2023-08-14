@@ -18,6 +18,7 @@ class _MyMaterialAppTestState extends State<MyMaterialAppTest> {
     //   body: ,
     // );
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text("sovann"),

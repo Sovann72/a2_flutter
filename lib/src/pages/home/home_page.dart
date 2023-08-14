@@ -1,25 +1,4 @@
 import 'package:a2_tutorial/src/pages/home/list_of_lessons.dart';
-import 'package:a2_tutorial/src/pages/lessons/1.1.scaffold_safeArea/1.1.scaffold_safeArea.dart';
-import 'package:a2_tutorial/src/pages/lessons/1.1.scaffold_safeArea/a2safeArea.dart';
-import 'package:a2_tutorial/src/pages/lessons/1.1.scaffold_safeArea/a2scaffold.dart';
-import 'package:a2_tutorial/src/pages/lessons/1.2.container_position/1.2.container_positioning.dart';
-import 'package:a2_tutorial/src/pages/lessons/1.2.container_position/a2column.dart';
-import 'package:a2_tutorial/src/pages/lessons/1.2.container_position/a2container.dart';
-import 'package:a2_tutorial/src/pages/lessons/1.2.container_position/a2row.dart';
-import 'package:a2_tutorial/src/pages/list/lesson_model.dart';
-import 'package:a2_tutorial/src/pages/onboarding_task/lessons/change_color.dart';
-import 'package:a2_tutorial/src/pages/onboarding_task/onboarding_task.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/background_audio.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/download_pdf.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/hive_test.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/material_app_test.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/my_package_info.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/search_bar/search_bar.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/snack_bar_entire_app.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/spectrum_page.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/store_n_load_img.dart';
-import 'package:a2_tutorial/src/pages/sura_test/new_tests/test_file.dart';
-import 'package:a2_tutorial/src/pages/sura_test/sura_test.dart';
 import 'package:flutter/material.dart';
 
 class NewWidget extends StatelessWidget {
