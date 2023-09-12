@@ -16,7 +16,7 @@ dependencies:
   video_player: ^2.5.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  audio_visualizer: ^0.1.1
+  # audio_visualizer: ^0.1.1
   mic_stream: ^0.6.2
   raw_sound: ^0.3.0+1
   noise_meter: ^3.1.0
