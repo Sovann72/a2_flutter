@@ -2,6 +2,7 @@ import 'package:a2_tutorial/src/pages/flutter_knowledge/flutter_knowledge.dart';
 import 'package:a2_tutorial/src/pages/lessons/asurraa_training/component/component_page.dart';
 import 'package:a2_tutorial/src/pages/lessons/asurraa_training/fetch_data_page.dart';
 import 'package:a2_tutorial/src/pages/list/lesson_model.dart';
+import 'package:a2_tutorial/src/pages/sura_test/new_tests/call_api.dart';
 import 'package:a2_tutorial/src/pages/sura_test/new_tests/life_cycle.dart';
 import 'package:a2_tutorial/src/pages/sura_test/new_tests/my_video_edit/my_video_edit.dart';
 import 'package:a2_tutorial/src/pages/sura_test/new_tests/search_animation.dart';
@@ -64,6 +65,7 @@ List<LessonModel> listOfLesson = [
           SubLessonModel(title: "life cycle", pages: LifeCycleScreen()),
           SubLessonModel(
               title: "translate animation", pages: TranslateAnimation()),
+          SubLessonModel(title: "calling api", pages: CallingAPIPage())
           // SubLessonModel(title: "test smooth marker", pages: pages)
         ],
       )),
