@@ -14,4 +14,4 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Run CI task
-      run: echo "ci working"
+      run: flutter pub get
