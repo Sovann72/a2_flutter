@@ -19,29 +19,38 @@ dependencies:
   # audio_visualizer: ^0.1.1
   mic_stream: ^0.6.2
   raw_sound: ^0.3.0+1
-  noise_meter: ^3.1.0
+  noise_meter: ^4.0.1
   url_launcher: ^6.1.8
   path_provider: ^2.0.13
   provider: ^6.0.5
-  sura_manager: ^1.5.0
+  # sura_manager: ^1.5.0
   # image_downloader: ^0.30.0
-  uuid: ^3.0.7
+  uuid: ^4.0.0
   fluttertoast: ^8.2.1
   dio: ^5.0.3
   permission_handler: ^10.2.0
   open_filex: ^4.3.2
-  package_info_plus: ^3.0.3
+  package_info_plus: ^4.1.0
   package_config: ^2.1.0
   yaml: ^3.1.1
-  video_editor: ^2.4.0
+  video_editor: ^3.0.0
   file_picker: ^5.2.10
-  image_picker: ^0.8.5
-  sura_flutter: ^1.4.2
+  image_picker: ^1.0.4
+  infinite_scroll_pagination: ^4.0.0
+  # sura_flutter: ^1.4.2
   soriya_flutter:
     git:
       url: https://github.com/Sovann72/soriya-flutter.git
       branch: stable
       # branch: null-safety-migration
+  sura_manager:
+    git:
+      url: https://github.com/Sovann72/sura-manager.git
+      branch: master
+  sura_flutter:
+    git:
+      url: https://github.com/Sovann72/sura-flutter.git
+      branch: master
 
   # helper: ^0.0.6
 

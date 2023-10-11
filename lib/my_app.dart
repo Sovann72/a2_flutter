@@ -1,5 +1,6 @@
 import 'package:a2_tutorial/splash_screen.dart';
 import 'package:a2_tutorial/src/pages/home/home_page.dart';
+import 'package:a2_tutorial/src/provider/localization_provider.dart';
 import 'package:a2_tutorial/src/provider/search_file_provider.dart';
 import 'package:a2_tutorial/src/provider/student_offline_data_provider.dart';
 import 'package:a2_tutorial/widget/scaffold_template.dart';
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => StudentOfflineDataProvider()),
-        ChangeNotifierProvider(create: (_) => SearchFileProvider())
+        ChangeNotifierProvider(create: (_) => SearchFileProvider()),
+        ChangeNotifierProvider(create: (_) => LocalizationProvider())
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

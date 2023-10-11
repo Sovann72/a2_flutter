@@ -7,7 +7,7 @@ import 'package:a2_tutorial/src/pages/sura_test/new_tests/my_video_edit/video_re
 import 'package:flutter/material.dart';
 import 'package:sura_flutter/sura_flutter.dart';
 import 'package:sura_manager/sura_manager.dart';
-import 'package:video_editor/domain/bloc/controller.dart';
+// import 'package:video_editor/domain/bloc/controller.dart';
 import 'package:video_editor/video_editor.dart';
 import 'package:video_player/video_player.dart';
 
@@ -101,41 +101,41 @@ class _VideoEditorState extends State<VideoEditor> {
     _exportingProgress.value = 0;
     _isExporting.value = true;
     // NOTE: To use `-crf 1` and [VideoExportPreset] you need `ffmpeg_kit_flutter_min_gpl` package (with `ffmpeg_kit` only it won't work)
-    await _controller.exportVideo(
-      format: VideoExportFormat.mp4,
-      preset: VideoExportPreset.slower,
-      customInstruction: "-crf 17",
-      onProgress: (stats, value) => _exportingProgress.value = value,
-      onError: (e, s) => _showErrorSnackBar("Error on export video :("),
-      onCompleted: (file) {
-        debugPrint("\x1B[33m[file]: ${file.path}");
-        _isExporting.value = false;
-        if (!mounted) return;
-        // await SuraNavigator.push(VideoResultPopup(video: file));
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => VideoResultPopup(video: file)));
-        // showDialog(
-        //   context: context,
-        //   builder: (_) => VideoResultPopup(video: file),
-        // );
-      },
-    );
+    // await _controller.exportVideo(
+    //   format: VideoExportFormat.mp4,
+    //   preset: VideoExportPreset.slower,
+    //   customInstruction: "-crf 17",
+    //   onProgress: (stats, value) => _exportingProgress.value = value,
+    //   onError: (e, s) => _showErrorSnackBar("Error on export video :("),
+    //   onCompleted: (file) {
+    //     debugPrint("\x1B[33m[file]: ${file.path}");
+    //     _isExporting.value = false;
+    //     if (!mounted) return;
+    //     // await SuraNavigator.push(VideoResultPopup(video: file));
+    //     Navigator.push(
+    //         context,
+    //         MaterialPageRoute(
+    //             builder: (context) => VideoResultPopup(video: file)));
+    //     // showDialog(
+    //     //   context: context,
+    //     //   builder: (_) => VideoResultPopup(video: file),
+    //     // );
+    //   },
+    // );
   }
 
   void _exportCover() async {
-    await _controller.extractCover(
-      onError: (e, s) => _showErrorSnackBar("Error on cover exportation :("),
-      onCompleted: (cover) {
-        if (!mounted) return;
+    // await _controller.extractCover(
+    //   onError: (e, s) => _showErrorSnackBar("Error on cover exportation :("),
+    //   onCompleted: (cover) {
+    //     if (!mounted) return;
 
-        // showDialog(
-        //   context: context,
-        //   builder: (_) => CoverResultPopup(cover: cover),
-        // );
-      },
-    );
+    //     // showDialog(
+    //     //   context: context,
+    //     //   builder: (_) => CoverResultPopup(cover: cover),
+    //     // );
+    //   },
+    // );
   }
 
   @override
